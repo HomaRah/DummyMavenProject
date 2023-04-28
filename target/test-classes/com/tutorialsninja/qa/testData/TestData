@@ -1,0 +1,16 @@
+#loginTest data
+invalidPassword = Winter@1234
+tempIssueWarningMessage = Warning: No match for E-Mail Address and/or Password
+wrongCrentialsMessage = Warning: No match for E-Mail Address and/or Password.
+alertUsername = Warning: No match for E-Mail Address and/or Password.
+alertPassword = Warning: No match for E-Mail Address and/or Password.
+
+RegisterAccount 
+FirstName = Homa
+Lastname = Rahimi
+Telephone = 7033031245
+Password = Winter@12?
+Passwrodconfirm = Winter@12?
+
+SerachTest
+  search = form-control input-lg
