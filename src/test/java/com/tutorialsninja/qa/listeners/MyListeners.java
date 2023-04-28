@@ -63,7 +63,10 @@ public void onTestStart(ITestResult result) {
 		 FileHandler.copy(source, new File (destination));
 	 }catch (IOException e) {
 		 e.printStackTrace();
-	 }
+	 } catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	    extentTest.addScreenCaptureFromPath(destination);
 	    extentTest.log(Status.INFO,result.getThrowable());
 	    extentTest.log(Status.FAIL, testName + "failed");
@@ -83,6 +86,7 @@ public void onTestStart(ITestResult result) {
  @Override
  public void onFinish(ITestContext context) {
 		System.out.println("Execution of Tutorialsninja Project finished");
+		extentReport.flush();
  }
  @Override
  public void onTestFailedButWithinSuccessPercentage(ITestResult result) {

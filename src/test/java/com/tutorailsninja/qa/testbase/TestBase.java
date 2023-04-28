@@ -44,7 +44,7 @@ public class TestBase {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Utilities.implitWaitTime));
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(Utilities.pageLoadTime));
 		driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(Utilities.scripttTime));
-		driver.get("http://tutorialsninja.com/demo");
+		driver.get(prop.getProperty("url"));
 		return driver;
 	}
 

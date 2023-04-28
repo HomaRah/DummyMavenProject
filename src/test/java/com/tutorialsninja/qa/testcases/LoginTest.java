@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import com.tutorailsninja.qa.testbase.TestBase;
+import com.tutorials.qa.testData.SupplyTestDataFromDataProviderAndExcel;
 import com.tutorialsninja.qa.utils.Utilities;
 
 public class LoginTest extends TestBase {
@@ -22,16 +23,17 @@ public class LoginTest extends TestBase {
 	@BeforeMethod
 	public void setUp() {
 	 driver =  initializeBrowserAndOpenApplication(prop.getProperty("browserName"));
+	 
 	 driver.findElement(By.linkText("My Account")).click();
 	 driver.findElement(By.linkText("Login")).click();
 	
 	}
 
-	@Test(priority =1)
-	public void verifyTutorialsninjaLoinWithValidUsernameAndValidPassword() throws Exception {
+	@Test(priority =1, dataProvider = "TutorialsninjaDataProviderSupply", dataProviderClass = SupplyTestDataFromDataProviderAndExcel.class)
+	public void verifyTutorialsninjaLoinWithValidUsernameAndValidPassword(String username, String passwrod) throws Exception {
 		
-			driver.findElement(By.id("input-email")).sendKeys(prop.getProperty("validUserName"));
-	        driver.findElement(By.id("input-password")).sendKeys(prop.getProperty("validPassword"));
+			driver.findElement(By.id("input-email")).sendKeys(username);
+	        driver.findElement(By.id("input-password")).sendKeys(passwrod);
 	        driver.findElement(By.cssSelector("input.btn.btn-primary")).click();
 	        driver.findElement(By.linkText("Logout")).click();
 	        softassert.assertTrue(driver.findElement(By.cssSelector("a.btn.btn-primary")).isDisplayed());

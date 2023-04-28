@@ -1,70 +1,48 @@
 package com.tutorialsninja.qa.testcase;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import com.aventstack.extentreports.util.Assert;
 import com.tutorailsninja.qa.testbase.TestBase;
+import com.tutorialsninja.qa.pages.LandingPage;
 
 public class SearchTest extends TestBase {
 
-	
-	public SearchTest () throws Exception {
-		super();
-	}
-	public WebDriver driver;
-	public SoftAssert softassert = new SoftAssert();
-	
-	
-	@BeforeMethod
-	public void setUp() {
-		
-		
-	}
-	 @Test
+    public SearchTest() throws Exception {
+        super();
+    }
 
-	    public void tSearchTest() throws Exception{
+    public WebDriver driver;
+    public SoftAssert softassert = new SoftAssert();
 
-		 driver =  initializeBrowserAndOpenApplication(prop.getProperty("browserName"));
-		 driver.findElement(By.linkText("search")).sendKeys.sendKeys(prop.getProperty("sera"));
-		 driver.findElement(By.linkText("Login")).click();
-		
-			
+    @BeforeMethod
+    public void setUp() {
+        driver = initializeBrowserAndOpenApplication(prop.getProperty("browserName"));
+    }
 
-	        HomePage homePage = new HomePage(driver);
+    @Test
+    public void searchTest() throws Exception {
+        LandingPage landingPage = new LandingPage(driver);
+        landingPage.clickOnSignInLink();
+        landingPage.enterSearchKeyword("iPhone");
+        landingPage.clickSearchButton();
+        softassert.assertTrue(landingPage.isSearchResultsPageDisplayed(), "Search failed!");
+        softassert.assertAll();
+    }
 
-	      
-	        homePage.enterSearchKeyword("iPhone");
+    @AfterTest
+    public void tearDown() {
+        driver.quit();
+    }
 
-	        homePage.clickSearchButton();
+    @Override
+    public WebDriver initializeBrowserAndOpenApplication(String browserName) {
+        return super.initializeBrowserAndOpenApplication(browserName);
+    }
 
-	        Assert.assertTrue(homePage.isSearchResultsPageDisplayed(), "Search failed!");
-
-	    }
-
-	   
-
-	    @AfterTest
-
-	    public void tearDown() {
-
-	       
-
-	        driver.quit();
-
-	    }
-		@Override
-		public WebDriver initializeBrowserAndOpenApplication(String browserName) {
-			// TODO Auto-generated method stub
-			return super.initializeBrowserAndOpenApplication(browserName);
-		}
-
-	}
-
-
+}
 
 
